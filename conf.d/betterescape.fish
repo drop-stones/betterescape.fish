@@ -36,3 +36,14 @@ function _betterescape_on_sequence --on-variable betterescape_sequence --descrip
 end
 
 _betterescape_on_sequence
+
+function _betterescape_uninstall --on-event betterescape_uninstall --description "Uninstall betterescape: clear bindings, variables, and functions"
+    # Clear keybindings
+    _betterescape_clear
+
+    # Remove private variables
+    set --erase (set --names | string match "_betterescape_*")
+
+    # Remove all betterescape functions
+    functions --erase (functions --all | string match "_betterescape_*")
+end
